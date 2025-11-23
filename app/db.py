@@ -54,6 +54,7 @@ class Product(Base):
     name: Mapped[str] = mapped_column(nullable=False, unique=True)
     order_items = relationship("OrderItem", back_populates="product")
 
+
 class Order(Base):
     __tablename__ = 'orders'
 
@@ -66,6 +67,7 @@ class Order(Base):
     user = relationship("User", back_populates="orders")
     address = relationship("Address")
     items = relationship("OrderItem", back_populates="order")
+
 
 class OrderItem(Base):
     __tablename__ = 'order_items'
@@ -80,14 +82,14 @@ class OrderItem(Base):
     product = relationship("Product", back_populates="order_items")
 
 
-connect_url = "postgresql+psycopg2://postgres:12345@localhost:5432/test_db"
+# connect_url = "postgresql+psycopg2://postgres:12345@localhost:5432/test_db"
 
-engine = create_engine(
-    connect_url,
-    echo=True
-)
+# engine = create_engine(
+#     connect_url,
+#     echo=True
+# )
 
-session_factory = sessionmaker(engine)
+# session_factory = sessionmaker(engine)
 
 # with session_factory() as session:
     # сначала я создал пользователей и адресы
